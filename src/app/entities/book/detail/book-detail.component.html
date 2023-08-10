@@ -1,0 +1,38 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <div *ngIf="book" class="card-shadow">
+      <h2 data-cy="bookDetailsHeading"><span>Book</span></h2>
+
+      <hr />
+
+      <div class="row">
+        <div class="col-4">
+          <img class="card-img-top" [src]="book.imageUrl" alt="Card image cap">
+        </div>
+        <div class="col-8 d-flex align-items-center">
+          <div class="card-body">
+            <dl class="row-md">
+              <dt><span>Title</span></dt>
+              <dd>
+                <h2 class="card-title" ngbTooltip="Purchase Book"><a [href]="book.purchaseLink" target="_blank">{{book.title}}</a></h2>
+              </dd>
+              <dt><span>Publish Date</span></dt>
+              <dd>
+                <h5 class="card-date">{{book.PublishDate}}</h5>
+              </dd>
+            </dl>
+            <div class="">
+              <button type="submit" (click)="previousState()" class="btn btn-info me-2" data-cy="entityDetailsBackButton">
+                <i class="fa fa-arrow-left" aria-hidden="true"></i>&nbsp;<span>Back</span>
+              </button>
+        
+              <button type="button" [routerLink]="['/', book.id, 'edit']" class="btn btn-primary">
+                <i class="fa fa-pencil" aria-hidden="true"></i>&nbsp;<span>Edit</span>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

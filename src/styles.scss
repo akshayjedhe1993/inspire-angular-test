@@ -1,0 +1,30 @@
+/* You can add global styles to this file, and also import other style files */
+.card-shadow{
+    border-radius: 6px;
+    box-shadow: 0 0 30px rgba(214, 215, 216, 0.5);
+    padding: 30px;
+}
+.btn-primary{
+    background-color: #002554 !important;
+    &:hover{
+        background-color: transparent !important;
+        color: #002554;
+        border: 1px solid #002554;
+    }
+}
+.card{
+    box-shadow: 0 0 8px rgba(0, 0, 0, 0.2);
+    background-color: #fff;
+    border-radius: 5px;
+    &-title{
+        font-size: 25px;
+        a{
+           text-decoration: none;
+           color: #000;
+        }
+    }
+    &-date{
+        font-size: 20px;
+    }
+}
+

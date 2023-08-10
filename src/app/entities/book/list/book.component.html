@@ -1,0 +1,61 @@
+<div>
+  <h2 id="page-heading" data-cy="BookHeading">
+    <span>Books</span>
+
+    <div class="d-flex justify-content-between mt-3">
+      <div class="form-check form-switch">
+        <input class="form-check-input" [(ngModel)]="isSortbyName" (change)="onCheckboxChange($event)" type="checkbox" role="switch" id="flexSwitchCheckDefault">
+        <span class="form-check-label" for="flexSwitchCheckDefault">Sort by {{isSortbyName ? 'publish date' : 'title'}}</span>
+      </div>
+      <button
+        id="jh-create-entity"
+        data-cy="entityCreateButton"
+        class="btn btn-primary jh-create-entity create-book"
+        [routerLink]="['/new']"
+      >
+        <i class="fa fa-plus" aria-hidden="true"></i>
+        <span> Add new Book </span>
+      </button>
+    </div>
+  </h2>
+
+  <div class="alert alert-warning" id="no-result" *ngIf="books?.length === 0">
+    <span>No books found</span>
+  </div>
+
+  <ng-container *ngIf="books && books.length > 0">
+    <div class="row">
+      <div class="col-md-6 p-3" *ngFor="let book of books; trackBy: trackId">
+        <div class="card">
+          <div class="row">
+            <div class="col-4">
+              <img class="card-img-top" [src]="book.imageUrl" alt="Card image cap">
+            </div>
+            <div class="col-8 d-flex align-items-center">
+              <div class="card-body">
+                <h2 class="card-title" ngbTooltip="Purchase Book"><a [href]="book.purchaseLink" target="_blank">{{book.title}}</a></h2>
+                <h5 class="card-date">{{book.PublishDate}}</h5>
+                <div class="">
+                  <button type="submit" [routerLink]="[book.id, 'view']" class="btn btn-info btn-sm me-2" data-cy="entityDetailsButton">
+                    <i class="fa fa-eye" aria-hidden="true"></i>
+                    <span class="d-none d-md-inline ms-2">View</span>
+                  </button>
+    
+                  <button type="submit" [routerLink]="['/', book.id, 'edit']" class="btn btn-primary btn-sm me-2" data-cy="entityEditButton">
+                    <i class="fa fa-pencil" aria-hidden="true"></i>
+                    <span class="d-none d-md-inline ms-2">Edit</span>
+                  </button>
+    
+                  <button type="submit" (click)="delete(book)" class="btn btn-danger btn-sm" data-cy="entityDeleteButton">
+                    <i class="fa fa-times" aria-hidden="true"></i>
+                    <span class="d-none d-md-inline ms-2">Delete</span>
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </ng-container>
+</div>

@@ -1,0 +1,73 @@
+<div class="d-flex justify-content-center">
+  <div class="col-md-6">
+    <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm" class="card-shadow">
+      <h2 id="jhi-book-heading" data-cy="BookCreateUpdateHeading" class="mb-3">Create or edit a Book</h2>
+
+      <div>
+        <div class="row mb-3" [hidden]="editForm.get('id')!.value == null || editForm.get('id')!.value == 0">
+          <div class="col-md-12">
+            <label class="form-label" for="field_id">ID</label>
+            <input type="number" class="form-control" name="id" id="field_id" data-cy="id" formControlName="id" [readonly]="true" />
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <div class="col-md-12">
+            <label class="form-label" for="field_name">Title</label>
+            <input type="text" class="form-control" name="title" id="field_title" data-cy="title" formControlName="title" />
+            <div *ngIf="editForm.get('title')!.invalid && (editForm.get('title')!.dirty || editForm.get('title')!.touched)">
+              <small class="form-text text-danger" *ngIf="editForm.get('title')?.errors?.required"> This field is required. </small>
+            </div>
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <div class="col-md-12">
+            <label class="form-label" for="field_name">Publish Date</label>
+            <input type="number" class="form-control" name="PublishDate" id="field_PublishDate" data-cy="PublishDate" formControlName="PublishDate" min="1000" max="9999" />
+            <div *ngIf="editForm.get('PublishDate')!.invalid && (editForm.get('PublishDate')!.dirty || editForm.get('PublishDate')!.touched)">
+              <small class="form-text text-danger" *ngIf="editForm.get('PublishDate')?.errors?.required"> This field is required. </small>
+              <small class="form-text text-danger" *ngIf="editForm.get('PublishDate')?.errors?.min || editForm.get('PublishDate')?.errors?.max"> This field required 4 digits only. </small>
+            </div>
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <div class="col-md-12">
+            <label class="form-label" for="field_name">Purchase Link</label>
+            <input type="text" class="form-control" name="purchaseLink" id="field_purchaseLink" data-cy="purchaseLink" formControlName="purchaseLink" />
+            <div *ngIf="editForm.get('purchaseLink')!.invalid && (editForm.get('purchaseLink')!.dirty || editForm.get('purchaseLink')!.touched)">
+              <small class="form-text text-danger" *ngIf="editForm.get('purchaseLink')?.errors?.required"> This field is required. </small>
+            </div>
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <div class="col-md-12">
+            <label class="form-label" for="field_name">Image Url</label>
+            <input type="text" class="form-control" name="imageUrl" id="field_imageUrl" data-cy="imageUrl" formControlName="imageUrl" />
+            <div *ngIf="editForm.get('imageUrl')!.invalid && (editForm.get('imageUrl')!.dirty || editForm.get('imageUrl')!.touched)">
+              <small class="form-text text-danger" *ngIf="editForm.get('imageUrl')?.errors?.required"> This field is required. </small>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div>
+        <button type="button" id="cancel-save" data-cy="entityCreateCancelButton" class="btn btn-secondary" (click)="previousState()">
+          <i class="fa fa-ban" aria-hidden="true"></i>&nbsp;<span>Cancel</span>
+        </button>
+
+        <button
+          type="submit"
+          id="save-entity"
+          data-cy="entityCreateSaveButton"
+          [disabled]="editForm.invalid || isSaving"
+          class="btn btn-primary ms-2"
+        >
+        <i class="fa fa-save" aria-hidden="true"></i>&nbsp;<span>Save</span>
+        </button>
+      </div>
+    </form>
+  </div>
+</div>
